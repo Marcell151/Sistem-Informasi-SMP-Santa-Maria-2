@@ -168,8 +168,8 @@ function getNavClass($isActive) {
 
     </nav>
 
-    <div class="p-4 border-t border-[#F1F5F9] bg-slate-50/50">
-        <div class="flex items-center gap-3 mb-4 px-2">
+    <div class="p-4 border-t border-[#F1F5F9] bg-slate-50/50 space-y-2">
+        <div class="flex items-center gap-3 mb-2 px-2">
             <div class="w-10 h-10 rounded-full bg-[#000080] flex items-center justify-center text-sm font-bold text-white shadow-sm">
                 <?= $initial ?>
             </div>
@@ -178,9 +178,15 @@ function getNavClass($isActive) {
                 <p class="text-[10px] font-medium text-slate-500 uppercase">Administrator</p>
             </div>
         </div>
-        <a href="../../actions/logout.php" onclick="return confirm('Keluar dari aplikasi?')" class="flex w-full items-center justify-start text-sm font-medium px-4 py-2.5 rounded-md text-slate-600 hover:text-red-600 hover:bg-red-50 transition-colors">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-            Keluar
+
+        <a href="../../../launchpad.php" class="flex w-full items-center justify-start text-sm font-bold px-4 py-2.5 rounded-lg text-[#000080] bg-blue-100 hover:bg-blue-200 transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Kembali ke Portal
+        </a>
+
+        <a href="../../actions/logout.php" onclick="return confirm('Yakin ingin keluar dari seluruh sistem?')" class="flex w-full items-center justify-start text-sm font-bold px-4 py-2.5 rounded-lg text-red-600 bg-red-50 hover:bg-red-100 transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            Keluar Sistem
         </a>
     </div>
 </aside>

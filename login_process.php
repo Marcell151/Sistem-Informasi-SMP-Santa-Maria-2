@@ -5,7 +5,7 @@
  * FIX: Hapus MD5 untuk Admin & Tambahkan Session bawaan SITAPSI
  */
 session_start();
-require_once 'sitapsi/config/database.php';
+require_once 'config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login_type = $_POST['login_type'] ?? '';

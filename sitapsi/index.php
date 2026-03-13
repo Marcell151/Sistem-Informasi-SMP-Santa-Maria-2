@@ -10,7 +10,7 @@ session_start();
 if (isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
     // Redirect ke dashboard sesuai role
     if ($_SESSION['role'] === 'Admin' || $_SESSION['role'] === 'SuperAdmin') {
-        header('Location: views/admin/dashboard.php');
+        header('Location: views/dashboard.php');
     } else {
         header('Location: views/guru/input_pelanggaran.php');
     }

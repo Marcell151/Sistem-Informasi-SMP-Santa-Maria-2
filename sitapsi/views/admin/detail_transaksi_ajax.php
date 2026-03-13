@@ -5,7 +5,7 @@
  * PENYESUAIAN: Penampil Cerdas untuk Link Eksternal, PDF, Word, dan Gambar
  */
 
-require_once '../../config/database.php';
+require_once '../../../config/database.php';
 
 $id_transaksi = $_GET['id'] ?? null;
 

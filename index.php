@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Panggil koneksi database dari folder sitapsi
-require_once 'sitapsi/config/database.php';
+require_once 'config/database.php';
 
 // Ambil daftar guru untuk Dropdown
 $guru_list = fetchAll("SELECT id_guru, nama_guru FROM tb_guru WHERE status = 'Aktif' ORDER BY nama_guru ASC");
@@ -60,8 +60,8 @@ $active_tab = ($saved_guru_id) ? 'guru' : 'admin';
         <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
             
             <div class="flex border-b border-slate-200">
-                <button onclick="switchTab('admin')" id="tab-admin" class="flex-1 py-4 text-sm font-extrabold transition-colors <?= $active_tab === 'admin' ? 'text-[#000080] border-b-2 border-[#000080]' : 'text-slate-400 hover:text-slate-600' ?>">👨‍💻 Administrator</button>
-                <button onclick="switchTab('guru')" id="tab-guru" class="flex-1 py-4 text-sm font-extrabold transition-colors <?= $active_tab === 'guru' ? 'text-[#000080] border-b-2 border-[#000080]' : 'text-slate-400 hover:text-slate-600' ?>">👩‍🏫 Guru / Pegawai</button>
+                <button onclick="switchTab('admin')" id="tab-admin" class="flex-1 py-4 text-sm font-extrabold transition-colors <?= $active_tab === 'admin' ? 'text-[#000080] border-b-2 border-[#000080]' : 'text-slate-400 hover:text-slate-600' ?>">Administrator</button>
+                <button onclick="switchTab('guru')" id="tab-guru" class="flex-1 py-4 text-sm font-extrabold transition-colors <?= $active_tab === 'guru' ? 'text-[#000080] border-b-2 border-[#000080]' : 'text-slate-400 hover:text-slate-600' ?>">Guru / Pegawai</button>
             </div>
 
             <div class="p-8">
@@ -123,7 +123,7 @@ $active_tab = ($saved_guru_id) ? 'guru' : 'admin';
     </div>
 
     <div class="w-full max-w-md text-center relative z-10">
-        <a href="sitapsi/views/ortu/login.php" class="inline-flex items-center justify-center px-6 py-2.5 bg-white border border-slate-200 text-slate-600 hover:text-[#000080] hover:border-[#000080] rounded-full text-sm font-bold shadow-sm transition-all group">
+        <a href="ortu/login.php" class="inline-flex items-center justify-center px-6 py-2.5 bg-white border border-slate-200 text-slate-600 hover:text-[#000080] hover:border-[#000080] rounded-full text-sm font-bold shadow-sm transition-all group">
             <svg class="w-4 h-4 mr-2 text-slate-400 group-hover:text-[#000080]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             Masuk sebagai Wali Murid
         </a>

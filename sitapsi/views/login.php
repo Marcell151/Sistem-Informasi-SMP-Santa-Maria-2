@@ -4,7 +4,7 @@
  * PENYESUAIAN: Shortcut Link ke Portal Wali Murid
  */
 session_start();
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 // Cek jika sudah login, arahkan ke dashboard sesuai role
 if (isset($_SESSION['user_id'])) {

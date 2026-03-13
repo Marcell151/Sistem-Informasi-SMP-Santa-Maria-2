@@ -2,6 +2,7 @@
 /**
  * PORTAL TERPADU - App Launchpad (SSO)
  * Lokasi: htdocs/portal_sekolah/launchpad.php
+ * PENYESUAIAN: Arah link Master Data diubah ke folder core_admin/ dan penambahan Arsip Global
  */
 session_start();
 
@@ -43,37 +44,43 @@ $role = $_SESSION['role'];
 
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="mb-10 text-center">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-2">Selamat Datang, <?= htmlspecialchars($nama_user) ?> 👋</h1>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-2">Selamat Datang, <?= htmlspecialchars($nama_user) ?></h1>
             <p class="text-slate-500 font-medium">Pilih modul sistem yang ingin Anda akses hari ini.</p>
         </div>
 
         <?php if ($role === 'Admin'): ?>
         <div class="max-w-4xl mx-auto mb-10">
             <h2 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-4">Pengaturan Master (Core System)</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <a href="sitapsi/views/admin/data_siswa.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-[#000080] hover:shadow-md transition-all text-center group">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <a href="core_admin/views/data_siswa.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-[#000080] hover:shadow-md transition-all text-center group">
                     <div class="w-10 h-10 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-[#000080] group-hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </div>
-                    <span class="text-xs font-bold text-slate-700">Data Siswa</span>
+                    <span class="text-[11px] font-bold text-slate-700">Data Siswa</span>
                 </a>
-                <a href="sitapsi/views/admin/data_guru.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-[#000080] hover:shadow-md transition-all text-center group">
+                <a href="core_admin/views/data_guru.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-[#000080] hover:shadow-md transition-all text-center group">
                     <div class="w-10 h-10 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-[#000080] group-hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                     </div>
-                    <span class="text-xs font-bold text-slate-700">Data Guru</span>
+                    <span class="text-[11px] font-bold text-slate-700">Data Guru</span>
                 </a>
-                <a href="sitapsi/views/admin/data_ortu.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-[#000080] hover:shadow-md transition-all text-center group">
+                <a href="core_admin/views/data_ortu.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-[#000080] hover:shadow-md transition-all text-center group">
                     <div class="w-10 h-10 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-[#000080] group-hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </div>
-                    <span class="text-xs font-bold text-slate-700">Wali Murid</span>
+                    <span class="text-[11px] font-bold text-slate-700">Wali Murid</span>
                 </a>
-                <a href="sitapsi/views/admin/pengaturan_akademik.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-[#000080] hover:shadow-md transition-all text-center group">
+                <a href="core_admin/views/pengaturan_akademik.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-[#000080] hover:shadow-md transition-all text-center group">
                     <div class="w-10 h-10 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-[#000080] group-hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                     </div>
-                    <span class="text-xs font-bold text-slate-700">Akademik</span>
+                    <span class="text-[11px] font-bold text-slate-700">Akademik</span>
+                </a>
+                <a href="core_admin/views/arsip_tahun.php" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-slate-400 hover:shadow-md transition-all text-center group col-span-2 md:col-span-1">
+                    <div class="w-10 h-10 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-slate-700 group-hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M21 8v13H3V8"></path><path d="M1 3h22v5H1z"></path><path d="M10 12h4"></path></svg>
+                    </div>
+                    <span class="text-[11px] font-bold text-slate-700">Arsip Global</span>
                 </a>
             </div>
         </div>

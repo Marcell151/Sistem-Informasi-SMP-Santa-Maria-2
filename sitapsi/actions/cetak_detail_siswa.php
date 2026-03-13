@@ -6,7 +6,7 @@
  */
 
 session_start();
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 // Validasi Keamanan Lintas Peran (Admin, Guru, atau Ortu)
 if (!isset($_SESSION['role'])) {

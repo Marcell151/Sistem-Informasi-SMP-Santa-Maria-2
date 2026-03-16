@@ -1,8 +1,7 @@
 <?php
 /**
  * SITAPSI - Navbar Guru (Terintegrasi UI Global)
- * Desain translasi dari React/Next.js ke PHP Native
- * PENYESUAIAN: Penambahan Fitur Ganti PIN Guru
+ * PENYESUAIAN: Penambahan Tombol Kembali ke Launchpad (Portal SSO)
  */
 
 $current_page = basename($_SERVER['PHP_SELF'], '.php');
@@ -46,8 +45,8 @@ unset($_SESSION['pin_success_message'], $_SESSION['pin_error_message']);
                 </a>
             </nav>
 
-            <div class="flex items-center gap-2 sm:gap-4">
-                <div class="hidden md:flex items-center gap-3 border-r border-[#E2E8F0] pr-4">
+            <div class="flex items-center gap-1 sm:gap-3">
+                <div class="hidden md:flex items-center gap-3 border-r border-[#E2E8F0] pr-4 mr-2">
                     <div class="text-right">
                         <p class="text-sm font-bold text-slate-800"><?= htmlspecialchars($user_name) ?></p>
                         <p class="text-[10px] font-medium text-slate-500 uppercase">Guru SMPK 2</p>
@@ -57,11 +56,15 @@ unset($_SESSION['pin_success_message'], $_SESSION['pin_error_message']);
                     </div>
                 </div>
                 
-                <button onclick="openPinModal()" class="p-2 text-slate-500 hover:text-[#000080] hover:bg-blue-50 rounded-lg transition-colors flex items-center justify-center" title="Ganti PIN Akses">
+                <a href="../../../launchpad.php" class="p-2 text-[#000080] bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors flex items-center justify-center" title="Kembali ke Portal Induk">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </a>
+
+                <button onclick="openPinModal()" class="p-2 text-slate-500 hover:text-[#000080] hover:bg-slate-100 rounded-lg transition-colors flex items-center justify-center" title="Ganti PIN Akses">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 </button>
 
-                <a href="../../../logout.php" onclick="return confirm('Keluar dari Portal Guru?')" 
+                <a href="../../logout.php" onclick="return confirm('Yakin ingin keluar dari seluruh sistem Portal?')" 
                    class="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center justify-center" title="Keluar">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                 </a>
@@ -96,6 +99,13 @@ unset($_SESSION['pin_success_message'], $_SESSION['pin_error_message']);
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
             </div>
             <span class="text-[10px] font-bold">Input Poin</span>
+        </a>
+
+        <a href="../../../launchpad.php" class="flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors text-slate-400 hover:text-[#000080]">
+            <div class="p-1.5 bg-blue-50/50 rounded-full text-[#000080] shadow-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </div>
+            <span class="text-[10px] font-bold text-[#000080]">Portal</span>
         </a>
 
         <a href="rekap_kelas.php" class="flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors <?= in_array($current_page, ['rekap_kelas', 'detail_siswa']) ? 'text-[#000080]' : 'text-slate-400 hover:text-slate-600' ?>">

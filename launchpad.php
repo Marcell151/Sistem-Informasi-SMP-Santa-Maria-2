@@ -1,8 +1,7 @@
 <?php
 /**
  * PORTAL TERPADU - App Launchpad (SSO)
- * Lokasi: htdocs/portal_sekolah/launchpad.php
- * PENYESUAIAN: Arah link Master Data diubah ke folder core_admin/ dan penambahan Arsip Global
+ * Lokasi: C:\xampp\htdocs\portal_sekolah\launchpad.php
  */
 session_start();
 
@@ -11,8 +10,53 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
     exit; 
 }
 
+// 1. PANGGIL KONFIGURASI PDO ANDA
+require_once 'config/database.php'; 
+
 $nama_user = $_SESSION['nama_lengkap'];
 $role = $_SESSION['role'];
+
+// ==========================================
+// 2. PENGECEKAN SETUP AWAL (TAHUN AJARAN)
+// Menggunakan fungsi fetchOne() dari database.php
+// ==========================================
+$cek_ta = fetchOne("SELECT id_tahun FROM tb_tahun_ajaran WHERE status = 'Aktif'");
+
+// Jika tidak ada data yang kembali (KOSONG)
+if (!$cek_ta) {
+    if ($role === 'SuperAdmin' || $role === 'Admin') {
+        // Paksa Admin ke halaman Setup
+        header("Location: core_admin/views/setup_tahun_ajaran.php");
+        exit;
+    } else {
+        // Blokir Guru
+        ?>
+        <!DOCTYPE html>
+        <html lang="id">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Sistem Belum Siap</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+            <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+        </head>
+        <body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white p-8 rounded-3xl shadow-xl max-w-md w-full text-center border-t-4 border-amber-500">
+                <div class="w-20 h-20 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Sistem Belum Dikonfigurasi</h2>
+                <p class="text-slate-500 mb-8">Mohon maaf, Portal Terpadu saat ini belum memiliki Tahun Ajaran yang aktif. Silakan hubungi <b>Admin Pusat</b> untuk melakukan konfigurasi awal.</p>
+                <a href="logout.php" class="inline-block bg-slate-800 text-white font-bold py-3 px-6 rounded-xl hover:bg-slate-900 transition-colors w-full">Keluar dari Portal</a>
+            </div>
+        </body>
+        </html>
+        <?php
+        exit;
+    }
+}
+// ==========================================
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -48,7 +92,7 @@ $role = $_SESSION['role'];
             <p class="text-slate-500 font-medium">Pilih modul sistem yang ingin Anda akses hari ini.</p>
         </div>
 
-        <?php if ($role === 'Admin'): ?>
+        <?php if ($role === 'Admin' || $role === 'SuperAdmin'): ?>
         <div class="max-w-4xl mx-auto mb-10">
             <h2 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-4">Pengaturan Master (Core System)</h2>
             <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -90,7 +134,7 @@ $role = $_SESSION['role'];
             <h2 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-4">Modul Operasional</h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 
-                <a href="sitapsi/views/<?= strtolower($role) ?>/<?= $role === 'Admin' ? 'dashboard' : 'input_pelanggaran' ?>.php" class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#000080] transition-all group relative overflow-hidden flex flex-col h-full">
+                <a href="sitapsi/views/<?= strtolower($role) ?>/<?= ($role === 'Admin' || $role === 'SuperAdmin') ? 'dashboard' : 'input_pelanggaran' ?>.php" class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#000080] transition-all group relative overflow-hidden flex flex-col h-full">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full transform translate-x-10 -translate-y-10 group-hover:scale-150 transition-transform duration-500 -z-10"></div>
                     <div class="w-14 h-14 bg-[#000080] text-white rounded-2xl flex items-center justify-center mb-6 shadow-md shadow-blue-900/20 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
